@@ -22,8 +22,14 @@
     .card { background:#fff8ea; border-top:4px solid #a75432; padding:24px; min-height:160px; }
     .card h3 { margin:0 0 12px; font-size:24px; }
     .card p { margin:0; line-height:1.45; }
+    .story { padding-top:0; }
+    .story-wrap { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:36px; align-items:start; }
+    .story-image { width:100%; display:block; border:8px solid #fff8ea; box-shadow:0 10px 28px rgba(45,32,25,.2); }
+    .story-copy { font-size:18px; line-height:1.65; }
+    .story-copy p { margin:0 0 18px; }
+    .story-copy h2 { margin-top:0; }
     footer { background:#2d2019; color:#f4ead7; padding:32px 8vw; font-size:15px; }
-    @media(max-width:650px) { .links{display:none} .cards{grid-template-columns:1fr} .hero{min-height:650px} }
+    @media(max-width:650px) { .links{display:none} .cards{grid-template-columns:1fr} .hero{min-height:650px} .story-wrap{grid-template-columns:1fr} .story-copy{font-size:17px;} }
   </style>
 </head>
 <body>
@@ -45,6 +51,20 @@
       <article class="card"><h3>La calle</h3><p>Amigos, bicicletas y tardes que parecían no terminar.</p></article>
       <article class="card"><h3>Las cosas simples</h3><p>Jugar, conversar y cuidar lo que teníamos.</p></article>
       <article class="card"><h3>El esfuerzo</h3><p>Aprender que muchas cosas se conseguían con tiempo y trabajo.</p></article>
+    </div>
+  </section>
+  <section class="story">
+    <div class="story-wrap">
+      <img class="story-image" src="ninos-barriletes-san-juan-1999-v2.png" alt="Niños volando volantines en un descampado de San Juan, 1999">
+      <article class="story-copy">
+        <h2>Agosto, tiempo de volantines</h2>
+        <p>Llegaba agosto y, con el viento Zonda en San Juan, empezaba otra época del año. Se terminaban las tardes de balitas: las manos partidas de tanto jugar comenzaban a sanar, y la mirada ya buscaba el cielo.</p>
+        <p>Había que encontrar las cañas más rectas y secas. No cualquier caña servía. Las mirábamos, las comparábamos, las doblábamos apenas con cuidado. Después venía el trabajo de verdad: cortar, atar, medir y tratar de que el volantín quedara parejo.</p>
+        <p>Las bolsas de residuos negras y las bolsas de supermercado se transformaban para volar. Con un poco de lana, una caña cruzada y mucha paciencia, aparecía un rombo o un cuadrado listo para desafiar al viento. Nuestros padres o abuelos nos enseñaban una vez. Después quedaba en nuestras manos: era nuestro ingenio, nuestras pruebas y también nuestros errores.</p>
+        <p>En el descampado comenzaban las batallas. Hilos cortados, volantines que se perdían lejos, carreras para recuperarlos y risas que no terminaban. Siempre había alguien que tenía el mejor volantín: el que subía más alto, el que aguantaba mejor el viento o el que parecía no caer nunca.</p>
+        <p>No importaba si el nylon tenía un parche, si la cola era de retazos viejos o si el hilo estaba enrollado en un simple palito. Lo importante era salir, mirar hacia arriba y sentir que esa tarde era nuestra.</p>
+        <p>Tardes de agosto en San Juan. Tardes de viento, tierra, amigos y volantines. Tardes que, sin saberlo, se quedaron para siempre en nosotros.</p>
+      </article>
     </div>
   </section>
   <footer><strong>De Otra Época</strong><br><br>Esta página fue creada por Abelardo Vega para recordar nuestra infancia, los valores y las vivencias de una generación que ya se está yendo.</footer>
