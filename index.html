@@ -11,6 +11,8 @@
     nav { display:flex; justify-content:space-between; align-items:center; font-family:Arial,sans-serif; text-transform:uppercase; letter-spacing:.1em; font-size:13px; }
     .brand { font-weight:bold; font-size:18px; }
     .links { display:flex; gap:22px; }
+    .links a { color:inherit; text-decoration:none; }
+    .links a:hover { color:#e4b44f; }
     main { max-width:760px; margin-top:115px; }
     h1 { font-size:clamp(54px,9vw,100px); line-height:1; margin:0; letter-spacing:-.045em; text-transform:uppercase; text-shadow:3px 3px 0 rgba(113,55,34,.55); }
     .tagline { margin:18px 0 0; font-family:Arial,sans-serif; font-size:clamp(18px,2.6vw,28px); font-weight:900; letter-spacing:.13em; text-transform:uppercase; color:#e4b44f; }
@@ -40,7 +42,7 @@
   <header class="hero">
     <nav>
       <div class="brand">De Otra Época</div>
-      <div class="links"><span>Recuerdos</span><span>Valores</span><span>Historias</span></div>
+      <div class="links"><a href="#cosas-que-ya-no-se-ven">Recuerdos</a></div>
     </nav>
     <main>
       <h1>De Otra<br>Época.</h1>
@@ -49,9 +51,9 @@
       <div class="recuerdos-index"><div class="recuerdos-title">Ver recuerdos</div><a href="#volantines">Agosto, tiempo de volantines</a></div>
     </main>
   </header>
-  <section id="recuerdos">
-    <h2>Lo que nos formó</h2>
-    <p class="lead">No se trata de decir que todo tiempo pasado fue mejor. Se trata de guardar recuerdos, conversar con sinceridad y rescatar cosas simples que todavía valen.</p>
+  <section id="cosas-que-ya-no-se-ven">
+    <h2>Cosas que ya no se ven</h2>
+    <p class="lead">Recuerdos de una época en que las cosas simples alcanzaban para llenar una tarde.</p>
     <p class="lead">Elegí una historia para volver a ese momento.</p>
   </section>
   <section id="volantines" class="story">
