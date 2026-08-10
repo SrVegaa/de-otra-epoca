@@ -15,7 +15,10 @@
     h1 { font-size:clamp(54px,9vw,100px); line-height:1; margin:0; letter-spacing:-.045em; text-transform:uppercase; text-shadow:3px 3px 0 rgba(113,55,34,.55); }
     .tagline { margin:18px 0 0; font-family:Arial,sans-serif; font-size:clamp(18px,2.6vw,28px); font-weight:900; letter-spacing:.13em; text-transform:uppercase; color:#e4b44f; }
     .intro { max-width:520px; font-size:21px; line-height:1.45; margin:26px 0 30px; }
-    button { border:0; background:#e4b44f; color:#302116; padding:14px 20px; cursor:pointer; font-weight:bold; letter-spacing:.06em; text-transform:uppercase; }
+    .recuerdos-title { display:inline-block; background:#e4b44f; color:#302116; padding:14px 20px; font-family:Arial,sans-serif; font-weight:bold; letter-spacing:.06em; text-transform:uppercase; }
+    .recuerdos-index { margin-top:30px; }
+    .recuerdos-index a { display:block; width:max-content; max-width:100%; margin-top:12px; color:#fff8e9; font-size:20px; font-weight:bold; text-decoration:underline; text-underline-offset:5px; }
+    .recuerdos-index a:hover { color:#e4b44f; }
     section { padding:60px 8vw; max-width:1200px; margin:auto; }
     h2 { font-size:38px; margin:0 0 14px; }
     .lead { max-width:650px; font-size:19px; line-height:1.5; }
@@ -43,19 +46,15 @@
       <h1>De Otra<br>Época.</h1>
       <p class="tagline">Crecimos afuera.</p>
       <p class="intro">Un espacio para recordar los años en que un timbre, una bicicleta y la calle bastaban para hacer un día entero.</p>
-      <button onclick="document.getElementById('recuerdos').scrollIntoView({behavior:'smooth'})">Ver recuerdos</button>
+      <div class="recuerdos-index"><div class="recuerdos-title">Ver recuerdos</div><a href="#volantines">Agosto, tiempo de volantines</a></div>
     </main>
   </header>
   <section id="recuerdos">
     <h2>Lo que nos formó</h2>
     <p class="lead">No se trata de decir que todo tiempo pasado fue mejor. Se trata de guardar recuerdos, conversar con sinceridad y rescatar cosas simples que todavía valen.</p>
-    <div class="cards">
-      <article class="card"><h3>La calle</h3><p>Amigos, bicicletas y tardes que parecían no terminar.</p></article>
-      <article class="card"><h3>Las cosas simples</h3><p>Jugar, conversar y cuidar lo que teníamos.</p></article>
-      <article class="card"><h3>El esfuerzo</h3><p>Aprender que muchas cosas se conseguían con tiempo y trabajo.</p></article>
-    </div>
+    <p class="lead">Elegí una historia para volver a ese momento.</p>
   </section>
-  <section class="story">
+  <section id="volantines" class="story">
     <div class="story-wrap">
       <img class="story-image" src="ninos-barriletes-san-juan-1999-v2.png" alt="Niños volando volantines en un descampado de San Juan, 1999">
       <article class="story-copy">
