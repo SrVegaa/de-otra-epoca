@@ -3,135 +3,36 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>De Otra Época</title>
-  <style>
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: Georgia, serif; color: #2d2019; background: #f4ead7; }
-    .hero { min-height: 80vh; padding: 28px 8vw 70px; color: #fff8e9; background: linear-gradient(90deg, rgba(25,15,12,.82) 0%, rgba(25,15,12,.54) 42%, rgba(25,15,12,.08) 76%), url('hero-barrio-90s-v3.png') center / cover no-repeat; }
-    nav { display:flex; justify-content:space-between; align-items:center; font-family:Arial,sans-serif; text-transform:uppercase; letter-spacing:.1em; font-size:13px; }
-    .brand { font-weight:bold; font-size:18px; }
-    .links { display:flex; gap:22px; }
-    .links a { color:inherit; text-decoration:none; }
-    .links a:hover { color:#e4b44f; }
-    main { max-width:760px; margin-top:115px; }
-    h1 { font-size:clamp(54px,9vw,100px); line-height:1; margin:0; letter-spacing:-.045em; text-transform:uppercase; text-shadow:3px 3px 0 rgba(113,55,34,.55); }
-    .tagline { margin:18px 0 0; font-family:Arial,sans-serif; font-size:clamp(18px,2.6vw,28px); font-weight:900; letter-spacing:.13em; text-transform:uppercase; color:#e4b44f; }
-    .intro { max-width:520px; font-size:21px; line-height:1.45; margin:26px 0 18px; }
-    .author-note { max-width:500px; margin:0 0 22px; padding:11px 14px; background:rgba(20,14,12,.72); border-left:3px solid #e4b44f; font-family:Arial,sans-serif; font-size:13px; line-height:1.45; color:#fff8e9; }
-    .recuerdos-title { display:inline-block; background:#e4b44f; color:#302116; padding:8px 12px; font-family:Arial,sans-serif; font-size:13px; font-weight:bold; letter-spacing:.06em; text-transform:uppercase; }
-    .recuerdos-index { margin-top:30px; }
-    .recuerdos-index a { display:block; width:max-content; max-width:100%; margin-top:12px; color:#fff8e9; font-size:20px; font-weight:bold; text-decoration:underline; text-underline-offset:5px; }
-    .recuerdos-index a::before { content:"Abrir historia → "; display:inline-block; margin-right:8px; font-family:Arial,sans-serif; font-size:10px; font-weight:bold; letter-spacing:.04em; text-transform:uppercase; color:#e4b44f; text-decoration:none; }
-    .recuerdos-index a:hover { color:#e4b44f; }
-    section { padding:60px 8vw; max-width:1200px; margin:auto; }
-    h2 { font-size:38px; margin:0 0 14px; }
-    #cosas-que-ya-no-se-ven { max-width:none; padding:48px 8vw 42px; background:radial-gradient(circle at 15% 20%, rgba(228,180,79,.32), transparent 34%), linear-gradient(135deg,#d8c5a3,#eee2ca); border-top:5px solid #a75432; border-bottom:1px solid #b69262; }
-    #cosas-que-ya-no-se-ven h2 { font-family:Georgia,serif; font-size:clamp(22px,2.2vw,29px); line-height:1.05; letter-spacing:-.015em; text-transform:none; color:#6d3025; margin-bottom:14px; }
-    #cosas-que-ya-no-se-ven .lead { font-family:Arial,sans-serif; font-size:16px; line-height:1.45; color:#4a3529; }
-    .lead { max-width:650px; font-size:19px; line-height:1.5; }
-    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:32px; }
-    .card { background:#fff8ea; border-top:4px solid #a75432; padding:24px; min-height:160px; }
-    .card h3 { margin:0 0 12px; font-size:24px; }
-    .card p { margin:0; line-height:1.45; }
-    .story { position:relative; overflow:hidden; max-width:none; margin:0; padding:36px 8vw; background:#f4ead7; }
-    .story::before { content:''; position:absolute; inset:0; background:center / cover no-repeat; filter:blur(4px); transform:scale(1.04); opacity:.22; }
-    .story-wrap { position:relative; z-index:1; }
-    #volantines::before { background-image:url('ninos-barriletes-san-juan-1999-v2.png'); }
-    #leyendas-amor::before { background-image:url('leyendas-amor-pared.png'); }
-    #silbido-de-mi-viejo::before { background-image:url('el-silbido-de-mi-viejo.png'); }
-    #lapicera-diez-colores::before { background-image:url('lapicera-diez-colores.png'); }
-    .story-wrap::after { content:''; display:block; clear:both; }
-    .story-image { float:left; width:min(48%, 440px); display:block; margin:0 36px 18px 0; border:8px solid #fff8ea; box-shadow:0 10px 28px rgba(45,32,25,.2); }
-    .story-copy { font-size:18px; line-height:1.65; }
-    .story-copy p { margin:0 0 18px; }
-    .story-copy h2 { margin-top:0; }
-    .story + .story { border-top:1px solid #b69262; margin-top:0; padding-top:36px; }
-    footer { background:#2d2019; color:#f4ead7; padding:32px 8vw; font-size:15px; }
-    @media(max-width:650px) { .links{display:none} .cards{grid-template-columns:1fr} .hero{min-height:650px} .story-image{float:none;width:100%;margin:0 0 24px} .story-copy{font-size:17px;} }
-  </style>
+  <meta name="description" content="De Otra Época: recuerdos de una infancia compartida.">
+  <title>De Otra Época — Libro de recuerdos</title>
+  <link rel="stylesheet" href="libro.css">
 </head>
-<body>
-  <header class="hero">
-    <nav>
-      <div class="brand">De Otra Época</div>
-      <div class="links"><a href="#cosas-que-ya-no-se-ven">Recuerdos</a></div>
-    </nav>
-    <main>
-      <h1>De Otra<br>Época.</h1>
-      <p class="tagline">Crecimos afuera.</p>
-      <p class="intro">Un espacio para recordar los años en que un timbre, una bicicleta y la calle bastaban para hacer un día entero.</p>
-      <p class="author-note">Abelardo Vega reúne aquí los recuerdos de su infancia y las historias compartidas por amigos y conocidos. Son vivencias de una generación que vio cambiar muchas cosas y que hoy empieza a despedirse, pero que todavía vive en cada recuerdo.</p>
-      <div class="recuerdos-index"><div class="recuerdos-title">Ver historias</div><a href="#lapicera-diez-colores">La lapicera de diez colores</a><a href="#volantines">Agosto, tiempo de volantines</a><a href="#leyendas-amor">Amores en la edad del pavo</a><a href="#silbido-de-mi-viejo">El silbido de mi viejo</a></div>
-    </main>
-  </header>
-  <section id="cosas-que-ya-no-se-ven">
-    <h2>Un lugar para recordar</h2>
-    <p class="lead">Estas historias son recuerdos de una época que compartimos muchos. Días simples, juegos en la calle, amistades, primeros amores y momentos que quedaron guardados sin que nos diéramos cuenta.</p>
-    <p class="lead">Ojalá que al leerlas vuelvan la alegría, la nostalgia y también alguna tristeza linda; porque cada recuerdo nos lleva, aunque sea por un instante, a aquellos días que fueron nuestros.</p>
-  </section>
-  <section id="lapicera-diez-colores" class="story">
-    <div class="story-wrap">
-      <img class="story-image" src="lapicera-diez-colores.png" alt="Alumnos de primaria reunidos alrededor de un compañero que dibuja con una lapicera de varios colores">
-      <article class="story-copy">
-        <h2>La lapicera de diez colores</h2>
-        <p>Recuerdo que, cuando estaba en la primaria, solía visitarnos un vendedor de artículos escolares. Entraba al grado con su bolso cargado de novedades y la maestra siempre le concedía unos minutos para mostrar lo que traía.</p>
-        <p>Un día sacó de su bolso algo que, para nosotros, parecía increíble: una lapicera de diez colores.</p>
-        <p>—¡Lloren, chicos, lloren! ¡Ha llegado la lapicera de diez colores! —anunció con su frase de siempre.</p>
-        <p>Para demostrar aquella maravilla, dibujó una frutilla de color rojo. Después apretó uno de los botones y pintó sus hojas de verde. Volvió a apretar otro y, ante el asombro de todos, dibujó un sol amarillo.</p>
-        <p>¡No podíamos creerlo! Una sola lapicera era capaz de escribir y dibujar en diez colores diferentes y costaba solo un peso.</p>
-        <p>Al llegar a casa, teníamos que contarles a nuestros padres todo lo que habíamos visto y pedirles ese peso para comprar la gran novedad. Lo relatábamos entusiasmados, tratando de transmitirles la emoción que habíamos sentido en el aula.</p>
-        <p>Sin embargo, en aquellos tiempos un peso era mucho dinero. Solamente algunos compañeros cuyas familias tenían una mejor situación económica podían darse ese gusto.</p>
-        <p>Al día siguiente, apenas dos o tres chicos llevaban el peso necesario para comprar la tan deseada lapicera. Los demás nos reuníamos alrededor de ellos, felices y sorprendidos, para ver cómo escribían o dibujaban cambiando de color con cada botón.</p>
-        <p>Al final, la lapicera no duraba demasiado y sus colores apenas se veían. Pero eso ya no importaba. Durante unos días había sido el objeto más maravilloso de nuestra infancia.</p>
-        <p>Qué lindo habría sido poder tener una. Hoy lo recuerdo y me río, pero también vuelvo por un instante a aquel salón de clases, rodeado de guardapolvos blancos, mirando con ilusión una simple lapicera de diez colores.</p>
-        <p>Recuerdos de mi niñez.</p>
-      </article>
+<body class="cover-page">
+  <div class="ambient" aria-hidden="true"></div>
+  <main class="book-stage">
+    <div class="book" id="book">
+      <div class="page-edges" aria-hidden="true"></div>
+      <section class="cover" aria-label="Portada de De Otra Época">
+        <div class="cover-shade"></div>
+        <div class="cover-content">
+          <p class="edition">Memorias de Abelardo Vega</p>
+          <div>
+            <h1>De Otra<br>Época</h1>
+            <p class="tagline">Crecimos afuera</p>
+          </div>
+          <p class="cover-intro">Recuerdos, valores y vivencias de quienes crecimos antes de que todo cambiara.</p>
+          <div class="story-index" aria-label="Índice de historias">
+            <p class="index-label">Elegí una historia</p>
+            <a class="story-link" href="lapicera-diez-colores.html"><span>01</span>La lapicera de diez colores</a>
+            <a class="story-link" href="volantines.html"><span>02</span>Agosto, tiempo de volantines</a>
+            <a class="story-link" href="amores-edad-del-pavo.html"><span>03</span>Amores en la edad del pavo</a>
+            <a class="story-link" href="silbido-de-mi-viejo.html"><span>04</span>El silbido de mi viejo</a>
+          </div>
+          <p class="open-hint">Tocá una historia para abrir el libro</p>
+        </div>
+      </section>
     </div>
-  </section>
-  <section id="volantines" class="story">
-    <div class="story-wrap">
-      <img class="story-image" src="ninos-barriletes-san-juan-1999-v2.png" alt="Niños volando volantines en un descampado de San Juan, 1999">
-      <article class="story-copy">
-        <h2>Agosto, tiempo de volantines</h2>
-        <p>Llegaba agosto y, con el viento Zonda en San Juan, empezaba otra época del año. Se terminaban las tardes de balitas: las manos partidas de tanto jugar comenzaban a sanar, y la mirada ya buscaba el cielo.</p>
-        <p>Había que encontrar las cañas más rectas y secas. No cualquier caña servía. Las mirábamos, las comparábamos, las doblábamos apenas con cuidado. Después venía el trabajo de verdad: cortar, atar, medir y tratar de que el volantín quedara parejo.</p>
-        <p>Las bolsas de residuos negras y las bolsas de supermercado se transformaban para volar. Con un poco de lana, una caña cruzada y mucha paciencia, aparecía un rombo o un cuadrado listo para desafiar al viento. Nuestros padres o abuelos nos enseñaban una vez. Después quedaba en nuestras manos: era nuestro ingenio, nuestras pruebas y también nuestros errores.</p>
-        <p>En el descampado comenzaban las batallas. Hilos cortados, volantines que se perdían lejos, carreras para recuperarlos y risas que no terminaban. Siempre había alguien que tenía el mejor volantín: el que subía más alto, el que aguantaba mejor el viento o el que parecía no caer nunca.</p>
-        <p>No importaba si el nylon tenía un parche, si la cola era de retazos viejos o si el hilo estaba enrollado en un simple palito. Lo importante era salir, mirar hacia arriba y sentir que esa tarde era nuestra.</p>
-        <p>Tardes de agosto en San Juan. Tardes de viento, tierra, amigos y volantines. Tardes que, sin saberlo, se quedaron para siempre en nosotros.</p>
-      </article>
-    </div>
-  </section>
-  <section id="leyendas-amor" class="story">
-    <div class="story-wrap">
-      <img class="story-image" src="leyendas-amor-pared.png" alt="Corazones y nombres escritos a mano en una pared de escuela">
-      <article class="story-copy">
-        <h2>Amores en la edad del pavo</h2>
-        <p>En los años de secundaria llegaba eso que nosotros llamábamos la edad del pavo: la edad del enamoramiento. Parece que la edad del pavo duraba hasta los dieciocho años, ja, ja. De pronto alguien nos gustaba, o empezábamos a sospechar que nosotros le gustábamos a alguien. Cualquier señal podía quedarse grabada para siempre.</p>
-        <p>A veces era una cartita doblada muchas veces, escrita con nervios: “Yo gusto de vos”. Estaba el famoso mensaje que llegaba por otra persona: “Dice mi amigo que gusta de vos” o “Dice mi amiga que gusta de vos”. Con esa sola frase empezaban las risas, los nervios y las miradas que tratábamos de disimular.</p>
-        <p>También venía la pregunta que parecía enorme para nuestra edad: “¿Qué querés conmigo? ¿Querés algo serio o querés un trance (besarse)?”. Eran palabras simples, pero para nosotros podían significar muchísimo.</p>
-        <p>Nos poníamos nerviosos por todo. No sabíamos ni besar y el primer beso parecía una prueba enorme. Así eran los amores de secundaria: inocentes, torpes y llenos de emoción.</p>
-        <p>Y también estaban las paredes de la escuela, los bancos del curso, los escritorios y cualquier rincón del grado. Ahí aparecía un nombre, una inicial o un corazón hecho apurado con fibra negra o lápiz. “S.U.A.” quería decir <em>su único amor</em>; “U.P.S.”, <em>unidos por siempre</em>. Eran mensajes escritos casi a escondidas, pero para nosotros decían muchísimo.</p>
-        <p>No hacía falta más. Un nombre, un corazón desprolijo o una cartita alcanzaban para demostrar lo que sentíamos. Hoy esas leyendas en la pared casi no se ven, porque cambiaron los tiempos. Pero quedaron guardadas en la memoria de quienes vivimos aquella edad del pavo, cuando un “me gustás” podía ser todo un mundo.</p>
-      </article>
-    </div>
-  </section>
-  <section id="silbido-de-mi-viejo" class="story">
-    <div class="story-wrap">
-      <img class="story-image" src="el-silbido-de-mi-viejo.png" alt="Niños de barrio mirando a un amigo correr hacia su casa al atardecer">
-      <article class="story-copy">
-        <h2>El silbido de mi viejo</h2>
-        <p>Cuando éramos chicos, vivíamos afuera. No era como ahora, que muchas veces hay que decirles a los chicos que salgan: a nosotros tenían que llamarnos para que volviéramos a casa.</p>
-        <p>Íbamos a la escuela, hacíamos los deberes y tomábamos el té con pan, o un yerbeado con pan. Después salíamos rápido a la vereda, al baldío o a la calle del barrio. Había pelota, volantines, escondidas y amigos. Las tardes parecían eternas: cuando recién eran las ocho de la noche, sentíamos que habíamos vivido un día entero.</p>
-        <p>Claro que, cuando nos llamaban, casi siempre respondíamos: “¡Ya voy, ya voy!”. Pero seguíamos jugando un rato más.</p>
-        <p>Hasta que se escuchaba el silbido de mi viejo.</p>
-        <p>No era un silbido cualquiera: <strong>“ERA EL SILBIDO DE MI VIEJO.”</strong></p>
-        <p>Ahí ya no había otro “ya voy”. Había que correr a casa. Con mi viejo no se jugaba. Uno sabía que podía esperar un cintazo, un chancletazo o aquel tirón de patillas que en esos tiempos muchos conocimos. No hacía falta que repitiera el llamado: ese silbido alcanzaba para entender que el juego había terminado.</p>
-        <p>Hoy lo recuerdo como la señal de que el día se terminaba: había que bañarse, cenar y prepararse para ir a la escuela al día siguiente. Pero antes de entrar, quedaba esa última corrida por la calle, con la pelota, el volantín o los amigos todavía dando vueltas en la cabeza.</p>
-        <p>Así eran aquellos tiempos: una infancia simple, larga y linda. Vivíamos afuera, y el silbido de nuestros viejos era la señal de que era hora de volver a casa.</p>
-      </article>
-    </div>
-  </section>
-  <footer><strong>De Otra Época</strong></footer>
+  </main>
+  <script src="libro.js"></script>
 </body>
 </html>
