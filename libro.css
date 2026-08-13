@@ -29,6 +29,9 @@ a { color:inherit; }
 .story-link span { color:var(--gold); font:700 10px Arial,sans-serif; letter-spacing:.1em; }
 .story-link:hover,.story-link:focus-visible { color:var(--gold); transform:translateX(5px); outline:none; }
 .open-hint { margin:12px 0 0; color:#dacaa9; text-align:left; }
+.cover-author { margin-top:25px; padding-top:18px; border-top:1px solid rgba(229,199,127,.35); text-align:center; }
+.cover-author strong { display:block; color:#e5c77f; font:700 13px/1 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
+.cover-author span { display:block; margin-top:8px; color:#efe2c8; font-size:13px; font-style:italic; letter-spacing:.025em; }
 .book.is-opening .cover { transform:rotateY(-112deg); filter:brightness(.8); }
 .book.is-opening { filter:drop-shadow(25px 35px 25px rgba(0,0,0,.55)); }
 
