@@ -1,50 +1,5 @@
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Compartí tu recuerdo con De Otra Época. Todos los aportes son revisados antes de publicarse.">
-  <title>Compartí tu historia — De Otra Época</title>
-  <link rel="stylesheet" href="libro.css?v=10">
-</head>
-<body class="story-page">
-  <main class="story-shell">
-    <nav class="book-nav"><a href="historias.html">← Volver a las historias</a><span>De Otra Época</span></nav>
-    <section class="paper">
-      <p class="chapter">Los recuerdos también se comparten</p>
-      <h1>Contanos tu historia</h1>
-      <p class="submit-intro">Todos tenemos un recuerdo que merece quedar escrito. No hace falta que seas escritor: contalo como lo recordarías charlando con alguien. Puede ser breve. <strong>Tu envío no aparecerá automáticamente en la página.</strong> Primero será revisado y recién después podrá publicarse.</p>
-      <form class="memory-form" id="story-form">
-        <label>Título de tu recuerdo
-          <input name="title" maxlength="120" required placeholder="Ej.: Las tardes jugando a las balitas">
-        </label>
-        <label>Tu historia
-          <textarea name="body" maxlength="8000" required placeholder="¿Qué pasó? ¿Dónde estabas? ¿Qué era lo que hacía especial ese momento?"></textarea>
-        </label>
-        <div class="form-row">
-          <label>Tu nombre (opcional)
-            <input name="name" maxlength="80" placeholder="Cómo querés que figure si se publica">
-          </label>
-          <label>Si se publica, quiero aparecer como
-            <select name="author_mode"><option value="name">Mi nombre</option><option value="anonymous">Anónimo</option></select>
-          </label>
-        </div>
-        <label>Correo de contacto
-          <input name="email" type="email" maxlength="180" required placeholder="No se mostrará públicamente">
-        </label>
-        <label>Fotos del recuerdo (opcional, hasta 3)
-          <input id="photos" name="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple>
-        </label>
-        <div class="photo-preview" id="photo-preview"></div>
-        <p class="form-help">Las fotos quedan privadas mientras el aporte está pendiente. Máximo 5 MB por foto.</p>
-        <label class="consent-line"><input type="checkbox" required> <span>Confirmo que puedo compartir este texto y estas imágenes, y autorizo a De Otra Época a revisarlos y, si son aprobados, publicarlos en el sitio.</span></label>
-        <p class="moderation-note">La revisión existe para mantener el espíritu de la página y evitar spam, insultos, datos privados o contenido que no corresponda.</p>
-        <button class="submit-button" type="submit">Enviar para revisión</button>
-        <div id="story-status" class="form-status" role="status" aria-live="polite"></div>
-      </form>
-      <p class="folio">— Tu recuerdo puede ser la próxima página —</p>
-    </section>
-  </main>
-  <script src="comunidad.js?v=1"></script>
-</body>
-</html>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Compartí tu recuerdo con De Otra Época."><title>Compartí tu historia — De Otra Época</title><link rel="stylesheet" href="libro.css?v=12"></head><body class="story-page archive-page"><main class="story-shell"><nav class="book-nav"><a href="historias.html">← Volver a las historias</a><span>De Otra Época</span></nav><section class="paper form-paper"><p class="chapter">Los recuerdos también se comparten</p><h1>Contanos tu historia</h1><p class="submit-intro">No hace falta que seas escritor: contala como la recordarías charlando con alguien. Tu envío quedará privado hasta que sea revisado y aprobado.</p>
+<form class="memory-form" id="story-form"><label>Título<input name="title" maxlength="120" required placeholder="Ej.: Las tardes jugando a las balitas"></label><label>Tu historia<textarea name="body" maxlength="8000" minlength="30" required placeholder="¿Qué pasó? ¿Dónde estabas? ¿Qué hacía especial ese momento?"></textarea></label>
+<div class="form-row"><label>Cómo querés firmarla<select name="author_mode" id="author-mode"><option value="name">Con mi nombre</option><option value="pseudonym">Con un seudónimo</option><option value="anonymous">Como anónimo</option></select></label><label>Nombre o seudónimo<input name="name" maxlength="80" placeholder="No hace falta completarlo si elegís anónimo"></label></div>
+<label>Correo de contacto<input name="email" type="email" maxlength="180" required placeholder="Quedará privado; no se publica"></label><label>Fotos opcionales, hasta 3<input id="photos" name="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple></label><div class="photo-preview" id="photo-preview"></div><p class="form-help">Máximo 5 MB por foto. Mientras revisamos el aporte, las imágenes quedan privadas.</p>
+<label class="consent-line"><input type="checkbox" required><span>Autorizo la publicación y edición de este relato y de las fotografías adjuntas en el proyecto “De Otra Época”.</span></label><button class="submit-button" type="submit">Enviar para revisión</button><div id="story-status" class="form-status" role="status" aria-live="polite"></div></form></section></main><script src="comunidad.js?v=2"></script></body></html>
