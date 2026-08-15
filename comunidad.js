@@ -1,7 +1,7 @@
 const SUPABASE_URL = 'https://bgfauwszjpmztgpcoobq.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_E4GqF4Hj5GGYfmG7-Wor6Q_0QgjYND0';
 const API = `${SUPABASE_URL}/rest/v1`;
-const headers = { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' };
+const headers = { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' };
 
 function setStatus(el, message, type) {
   if (!el) return;
@@ -19,7 +19,7 @@ async function uploadPhotos(files) {
     const path = `${submissionId}/${Date.now()}-${index}.${ext}`;
     const response = await fetch(`${SUPABASE_URL}/storage/v1/object/story-submissions/${path}`, {
       method: 'POST',
-      headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}`, 'Content-Type': file.type, 'x-upsert': 'false' },
+      headers: { apikey: SUPABASE_KEY, 'Content-Type': file.type, 'x-upsert': 'false' },
       body: file
     });
     if (!response.ok) throw new Error('No se pudo subir una de las fotos.');
@@ -52,7 +52,7 @@ if (storyForm) {
       if (title.length < 3 || body.length < 30 || !email) throw new Error('Completá el título, tu historia y un correo de contacto.');
       const photoPaths = await uploadPhotos(photos?.files || []);
       const response = await fetch(`${API}/stories`, { method:'POST', headers:{...headers, Prefer:'return=minimal'}, body:JSON.stringify({ title, body, author_email:email, author_name:name || null, author_mode:authorMode, photo_paths:photoPaths, consent:true, status:'pending' }) });
-      if (!response.ok) throw new Error('No pudimos guardar la historia. Probá nuevamente.');
+      if (!response.ok) { const detail = await response.json().catch(() => ({})); throw new Error(detail.message || 'No pudimos guardar la historia. Probá nuevamente.'); }
       storyForm.reset(); preview.innerHTML='';
       setStatus(status, '¡Recibida! Tu historia quedó pendiente de revisión. No se publicará hasta ser aprobada.', 'ok');
     } catch (error) { setStatus(status, error.message || 'Ocurrió un error al enviar.', 'error'); }
