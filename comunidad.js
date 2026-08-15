@@ -49,7 +49,7 @@ if (storyForm) {
       const email = String(data.get('email') || '').trim();
       const name = String(data.get('name') || '').trim();
       const authorMode = String(data.get('author_mode') || 'name');
-      if (title.length < 3 || body.length < 30 || !email) throw new Error('Completá el título, tu historia y un correo de contacto.');
+      if (title.length < 3 || body.length < 80 || !email) throw new Error('Completá el título, una historia de al menos 80 caracteres y un correo de contacto.');
       const photoPaths = await uploadPhotos(photos?.files || []);
       const response = await fetch(`${API}/stories`, { method:'POST', headers:{...headers, Prefer:'return=minimal'}, body:JSON.stringify({ title, body, author_email:email, author_name:name || null, author_mode:authorMode, photo_paths:photoPaths, consent:true, status:'pending' }) });
       if (!response.ok) { const detail = await response.json().catch(() => ({})); throw new Error(detail.message || 'No pudimos guardar la historia. Probá nuevamente.'); }
