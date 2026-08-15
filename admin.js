@@ -1,29 +1,45 @@
 import{createClient}from'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.111.0/+esm';
 const URL='https://bgfauwszjpmztgpcoobq.supabase.co',KEY='sb_publishable_E4GqF4Hj5GGYfmG7-Wor6Q_0QgjYND0',EMAIL='abelardoadrian@gmail.com',sb=createClient(URL,KEY);
 const login=document.querySelector('#admin-login'),area=document.querySelector('#admin-area'),storyList=document.querySelector('#admin-list'),commentList=document.querySelector('#comment-list'),status=document.querySelector('#admin-status');
-function message(t){status.textContent=t}
+function message(t){status.textContent=t;status.classList.toggle('show',Boolean(t))}
 function label(value){return value==='pending'?'Pendiente':value==='approved'?'Publicado':'Rechazado'}
+function date(value){if(!value)return'';return new Intl.DateTimeFormat('es-AR',{day:'2-digit',month:'short',year:'numeric'}).format(new Date(value))}
 async function load(){
- message('Cargando aportes…');
+ message('Actualizando el panel…');
  const[storiesResult,commentsResult]=await Promise.all([sb.from('stories').select('*').order('created_at',{ascending:false}),sb.from('comments').select('*').order('created_at',{ascending:false})]);
  if(storiesResult.error||commentsResult.error){message('No se pudieron cargar todos los aportes.');return}
- renderStories(storiesResult.data);renderComments(commentsResult.data);message('');
+ renderStories(storiesResult.data);renderComments(commentsResult.data);
+ const storyPending=storiesResult.data.filter(x=>x.status==='pending').length,commentPending=commentsResult.data.filter(x=>x.status==='pending').length;
+ document.querySelector('#story-pending-stat').textContent=storyPending;
+ document.querySelector('#comment-pending-stat').textContent=commentPending;
+ document.querySelector('#total-stat').textContent=storiesResult.data.length+commentsResult.data.length;
+ message('');
+}
+function meta(author,email,state,created){
+ const row=document.createElement('div');row.className='admin-card-meta';
+ const person=document.createElement('span');person.textContent=(author||'Anónimo')+' · '+email+(created?' · '+date(created):'');
+ const badge=document.createElement('span');badge.className='admin-status-badge '+state;badge.textContent=label(state);
+ row.append(person,badge);return row
 }
 function renderStories(items){
- storyList.innerHTML='';document.querySelector('#story-count').textContent='('+items.filter(x=>x.status==='pending').length+' pendientes)';
- if(!items.length){storyList.innerHTML='<p class="comment-empty">Todavía no hay historias recibidas.</p>';return}
- items.forEach(s=>{const card=document.createElement('article');card.className='admin-card';
- const h=document.createElement('h3');h.textContent=s.title;const meta=document.createElement('p');meta.className='admin-meta';meta.textContent=(s.author_name||'Anónimo')+' · '+s.author_email+' · '+label(s.status);
- const body=document.createElement('textarea');body.value=s.body;const actions=buttons((next,b)=>reviewStory(s,body.value,next,b));card.append(h,meta,body,actions);storyList.appendChild(card)});
+ storyList.innerHTML='';const pending=items.filter(x=>x.status==='pending').length;
+ document.querySelector('#story-count').textContent=pending+' pendiente'+(pending===1?'':'s');
+ if(!items.length){storyList.innerHTML='<p class="admin-empty">Todavía no hay historias recibidas.</p>';return}
+ items.forEach(s=>{const card=document.createElement('article');card.className='admin-card status-'+s.status;
+ const top=document.createElement('div');top.className='admin-card-title';const h=document.createElement('h3');h.textContent=s.title;const kind=document.createElement('small');kind.textContent='HISTORIA';top.append(h,kind);
+ const body=document.createElement('textarea');body.value=s.body;body.setAttribute('aria-label','Texto de '+s.title);
+ const actions=buttons((next,b)=>reviewStory(s,body.value,next,b),s.status);card.append(top,meta(s.author_name,s.author_email,s.status,s.created_at),body,actions);storyList.appendChild(card)});
 }
 function renderComments(items){
- commentList.innerHTML='';document.querySelector('#comment-count').textContent='('+items.filter(x=>x.status==='pending').length+' pendientes)';
- if(!items.length){commentList.innerHTML='<p class="comment-empty">Todavía no hay comentarios recibidos.</p>';return}
- items.forEach(c=>{const card=document.createElement('article');card.className='admin-card';
- const h=document.createElement('h3');h.textContent='Comentario en: '+c.story_slug.replaceAll('-',' ');const meta=document.createElement('p');meta.className='admin-meta';meta.textContent=(c.author_name||'Anónimo')+' · '+c.author_email+' · '+label(c.status);
- const body=document.createElement('textarea');body.value=c.body;body.className='comment-review-text';const actions=buttons((next,b)=>reviewComment(c,body.value,next,b));card.append(h,meta,body,actions);commentList.appendChild(card)});
+ commentList.innerHTML='';const pending=items.filter(x=>x.status==='pending').length;
+ document.querySelector('#comment-count').textContent=pending+' pendiente'+(pending===1?'':'s');
+ if(!items.length){commentList.innerHTML='<p class="admin-empty">Todavía no hay comentarios recibidos.</p>';return}
+ items.forEach(c=>{const card=document.createElement('article');card.className='admin-card status-'+c.status;
+ const top=document.createElement('div');top.className='admin-card-title';const h=document.createElement('h3');h.textContent='Comentario en: '+c.story_slug.replaceAll('-',' ');const kind=document.createElement('small');kind.textContent='COMENTARIO';top.append(h,kind);
+ const body=document.createElement('textarea');body.value=c.body;body.className='comment-review-text';
+ const actions=buttons((next,b)=>reviewComment(c,body.value,next,b),c.status);card.append(top,meta(c.author_name,c.author_email,c.status,c.created_at),body,actions);commentList.appendChild(card)});
 }
-function buttons(handler){const actions=document.createElement('div');actions.className='admin-actions';[['approved','Aprobar y publicar'],['rejected','Rechazar']].forEach(([next,text])=>{const b=document.createElement('button');b.textContent=text;b.onclick=()=>handler(next,b);actions.appendChild(b)});return actions}
+function buttons(handler,current){const actions=document.createElement('div');actions.className='admin-actions';[['approved','✓ Aprobar y publicar'],['rejected','× Rechazar']].forEach(([next,text])=>{const b=document.createElement('button');b.textContent=text;b.className=next==='approved'?'approve':'reject';if(current===next)b.classList.add('selected');b.onclick=()=>handler(next,b);actions.appendChild(b)});return actions}
 async function reviewStory(s,edited,next,button){button.disabled=true;message('Guardando historia…');try{
  const paths=s.photo_paths||[];if(next==='approved'&&paths.length){for(const path of paths){const{error}=await sb.storage.from('story-submissions').copy(path,path,{destinationBucket:'story-published'});if(error&&!String(error.message).includes('already'))throw error}}
  const{error}=await sb.from('stories').update({body:edited,status:next,reviewed_at:new Date().toISOString(),published_at:next==='approved'?new Date().toISOString():null}).eq('id',s.id);if(error)throw error;message(next==='approved'?'Historia publicada.':'Historia rechazada.');await load();
