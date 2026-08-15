@@ -1,11 +1,22 @@
 const book = document.getElementById('book');
 
 function restoreCover() {
-  if (book) book.classList.remove('is-opening');
+  if (!book) return;
+  book.classList.remove('is-opening');
+  book.style.animation = 'none';
+  void book.offsetHeight;
+  book.style.animation = '';
 }
 
-window.addEventListener('pageshow', restoreCover);
+window.addEventListener('pageshow', () => {
+  restoreCover();
+  window.requestAnimationFrame(restoreCover);
+});
 window.addEventListener('pagehide', restoreCover);
+window.addEventListener('popstate', restoreCover);
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) restoreCover();
+});
 
 document.querySelectorAll('.story-link').forEach((link) => {
   link.addEventListener('click', (event) => {
