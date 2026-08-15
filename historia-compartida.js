@@ -1,4 +1,4 @@
-const URL='https://bgfauwszjpmztgpcoobq.supabase.co',KEY='sb_publishable_E4GqF4Hj5GGYfmG7-Wor6Q_0QgjYND0',headers={apikey:KEY,Authorization:'Bearer '+KEY};
+const URL='https://bgfauwszjpmztgpcoobq.supabase.co',KEY='sb_publishable_E4GqF4Hj5GGYfmG7-Wor6Q_0QgjYND0',headers={apikey:KEY};
 const id=new URLSearchParams(location.search).get('id');
 const title=document.querySelector('#shared-title'),author=document.querySelector('#shared-author'),body=document.querySelector('#shared-body'),photos=document.querySelector('#shared-photos');
 (async()=>{try{
