@@ -1,6 +1,6 @@
 const SUPABASE_URL='https://bgfauwszjpmztgpcoobq.supabase.co';
 const SUPABASE_KEY='sb_publishable_E4GqF4Hj5GGYfmG7-Wor6Q_0QgjYND0';
-const headers={apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY};
+const headers={apikey:SUPABASE_KEY};
 const list=document.querySelector('#stories-list');
 const search=document.querySelector('#story-search');
 function applyFilter(){
