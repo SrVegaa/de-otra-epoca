@@ -6,15 +6,27 @@ function label(value){return value==='pending'?'Pendiente':value==='approved'?'P
 function date(value){if(!value)return'';return new Intl.DateTimeFormat('es-AR',{day:'2-digit',month:'short',year:'numeric'}).format(new Date(value))}
 async function load(){
  message('Actualizando el panel…');
- const[storiesResult,commentsResult]=await Promise.all([sb.from('stories').select('*').order('created_at',{ascending:false}),sb.from('comments').select('*').order('created_at',{ascending:false})]);
+ const[storiesResult,commentsResult,visitsResult]=await Promise.all([sb.from('stories').select('*').order('created_at',{ascending:false}),sb.from('comments').select('*').order('created_at',{ascending:false}),sb.rpc('get_admin_visit_stats')]);
  if(storiesResult.error||commentsResult.error){message('No se pudieron cargar todos los aportes.');return}
  renderStories(storiesResult.data);renderComments(commentsResult.data);
  const storyPending=storiesResult.data.filter(x=>x.status==='pending').length,commentPending=commentsResult.data.filter(x=>x.status==='pending').length;
  document.querySelector('#story-pending-stat').textContent=storyPending;
  document.querySelector('#comment-pending-stat').textContent=commentPending;
  document.querySelector('#total-stat').textContent=storiesResult.data.length+commentsResult.data.length;
+ renderVisitStats(visitsResult.error?null:visitsResult.data);
  message('');
 }
+function renderVisitStats(stats){
+ const ids=['visit-total-stat','visit-today-stat','visit-week-stat','page-view-stat'],values=stats?[stats.total,stats.today,stats.last_7_days,stats.page_views]:['—','—','—','—'];
+ ids.forEach((id,i)=>document.querySelector('#'+id).textContent=typeof values[i]==='number'?values[i].toLocaleString('es-AR'):values[i]);
+ const list=document.querySelector('#top-pages-list');list.replaceChildren();
+ if(!stats){const p=document.createElement('p');p.className='admin-empty';p.textContent='No se pudieron cargar las estadísticas.';list.append(p);return}
+ const pages=Array.isArray(stats.top_pages)?stats.top_pages:[];
+ if(!pages.length){const p=document.createElement('p');p.className='admin-empty';p.textContent='Las visitas comenzarán a aparecer aquí.';list.append(p);return}
+ const max=Math.max(...pages.map(p=>Number(p.views)||0),1);
+ pages.forEach(page=>{const row=document.createElement('div');row.className='admin-page-row';const label=document.createElement('span');const path=String(page.path||'/');label.textContent=path==='/'?'Portada':decodeURIComponent(path).replace(/^\\//,'').replace(/\\.html$/,'').replaceAll('-',' ');const track=document.createElement('span');track.className='admin-page-track';const bar=document.createElement('i');bar.style.width=Math.max(8,Math.round((Number(page.views)||0)/max*100))+'%';track.append(bar);const value=document.createElement('strong');value.textContent=(Number(page.views)||0).toLocaleString('es-AR');row.append(label,track,value);list.append(row)})
+}
+
 function meta(author,email,state,created){
  const row=document.createElement('div');row.className='admin-card-meta';
  const person=document.createElement('span');person.textContent=(author||'Anónimo')+' · '+email+(created?' · '+date(created):'');
