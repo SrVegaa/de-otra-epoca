@@ -24,7 +24,7 @@ function renderVisitStats(stats){
  const pages=Array.isArray(stats.top_pages)?stats.top_pages:[];
  if(!pages.length){const p=document.createElement('p');p.className='admin-empty';p.textContent='Las visitas comenzarán a aparecer aquí.';list.append(p);return}
  const max=Math.max(...pages.map(p=>Number(p.views)||0),1);
- pages.forEach(page=>{const row=document.createElement('div');row.className='admin-page-row';const label=document.createElement('span');const path=String(page.path||'/');label.textContent=path==='/'?'Portada':decodeURIComponent(path).replace(/^\\//,'').replace(/\\.html$/,'').replaceAll('-',' ');const track=document.createElement('span');track.className='admin-page-track';const bar=document.createElement('i');bar.style.width=Math.max(8,Math.round((Number(page.views)||0)/max*100))+'%';track.append(bar);const value=document.createElement('strong');value.textContent=(Number(page.views)||0).toLocaleString('es-AR');row.append(label,track,value);list.append(row)})
+ pages.forEach(page=>{const row=document.createElement('div');row.className='admin-page-row';const label=document.createElement('span');const path=String(page.path||'/');label.textContent=path==='/'?'Portada':decodeURIComponent(path).split('/').pop().replace('.html','').replaceAll('-',' ');const track=document.createElement('span');track.className='admin-page-track';const bar=document.createElement('i');bar.style.width=Math.max(8,Math.round((Number(page.views)||0)/max*100))+'%';track.append(bar);const value=document.createElement('strong');value.textContent=(Number(page.views)||0).toLocaleString('es-AR');row.append(label,track,value);list.append(row)})
 }
 
 function meta(author,email,state,created){
