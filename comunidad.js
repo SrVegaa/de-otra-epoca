@@ -90,3 +90,29 @@ document.querySelectorAll('[data-comments]').forEach(box => {
   });
 });
 \nimport('./visitas.js?v=1');\n
+
+/* FONDO AUTOMATICO DE CADA HISTORIA */
+(function prepararFondoDeHistoria() {
+  function aplicar() {
+    const pagina = document.body;
+    if (!pagina || !pagina.classList.contains("story-page")) return;
+
+    const foto = document.querySelector(
+      ".story-photo, .story-figure-main img, .story-figure img, .paper img"
+    );
+    if (!foto) return;
+
+    const origen = foto.currentSrc || foto.src || foto.getAttribute("src");
+    if (!origen) return;
+
+    const origenSeguro = origen.replace(/"/g, "\\\"");
+    pagina.style.setProperty("--story-backdrop", 'url("' + origenSeguro + '")');
+    pagina.classList.add("story-image-backdrop");
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", aplicar, { once: true });
+  } else {
+    aplicar();
+  }
+})();
