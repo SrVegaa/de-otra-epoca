@@ -89,3 +89,4 @@ document.querySelectorAll('[data-comments]').forEach(box => {
     } catch(error){setStatus(status,error.message||'Ocurrió un error.','error');}
   });
 });
+\nimport('./visitas.js?v=1');\n
