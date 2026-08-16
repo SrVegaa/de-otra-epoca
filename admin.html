@@ -17,7 +17,8 @@
       <nav class="admin-menu" aria-label="Secciones del panel">
         <a class="active" href="#admin-dashboard"><span>◫</span> Resumen</a>
         <a href="#story-section"><span>▤</span> Historias</a>
-        <a href="#comment-section"><span>◌</span> Comentarios</a>\n        <a href="#visit-section"><span>⌁</span> Estadísticas</a>
+        <a href="#comment-section"><span>◌</span> Comentarios</a>
+        <a href="#visit-section"><span>⌁</span> Estadísticas</a>
       </nav>
       <div class="admin-sidebar-foot">
         <span class="admin-security-dot"></span> Área privada
@@ -88,6 +89,18 @@
         </details>
 
         <p id="admin-status" class="admin-system-status"></p>
+
+
+        <section class="admin-traffic" id="visit-section">
+          <div class="admin-traffic-heading"><div><h2>Estadísticas de visitas</h2><p>Una vista privada del movimiento de la página</p></div><span>● EN VIVO</span></div>
+          <div class="admin-traffic-grid">
+            <article><span>Visitas totales</span><strong id="visit-total-stat">—</strong></article>
+            <article><span>Hoy</span><strong id="visit-today-stat">—</strong></article>
+            <article><span>Últimos 7 días</span><strong id="visit-week-stat">—</strong></article>
+            <article><span>Páginas vistas</span><strong id="page-view-stat">—</strong></article>
+          </div>
+          <div class="admin-top-pages"><h3>Páginas más visitadas</h3><div id="top-pages-list"></div></div>
+        </section>
 
         <section class="admin-section" id="story-section">
           <div class="admin-section-heading">
