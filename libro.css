@@ -232,3 +232,94 @@ a { color:inherit; }
 .admin-page-track i{display:block;height:100%;background:#1f5d8e}
 @media(max-width:850px){.admin-traffic-grid{grid-template-columns:repeat(2,1fr)}.admin-traffic-grid article:nth-child(2){border-right:0}.admin-traffic-grid article{border-bottom:1px solid #bdc5ce}}
 @media(max-width:520px){.admin-traffic-grid{grid-template-columns:1fr}.admin-traffic-grid article{border-right:0}.admin-page-row{grid-template-columns:100px 1fr 38px}.public-visit-count{white-space:normal}}
+
+
+/* FONDOS INMERSIVOS Y TAPA AMPLIADA */
+.cover-page {
+  position: relative;
+  isolation: isolate;
+}
+
+.cover-page::before {
+  content: "";
+  position: fixed;
+  inset: -54px;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(28, 15, 11, .58), rgba(28, 15, 11, .72)),
+    url("hero-barrio-90s-v3.png") center / cover no-repeat;
+  filter: blur(28px) saturate(.78);
+  transform: scale(1.1);
+}
+
+.cover-page::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 32%, transparent 20%, rgba(17, 8, 5, .48) 100%);
+}
+
+.cover-page .ambient {
+  z-index: 2;
+}
+
+.cover-page .book-stage {
+  position: relative;
+  z-index: 3;
+}
+
+.cover-page .book {
+  width: min(1040px, 94vw);
+}
+
+.story-page.story-image-backdrop {
+  position: relative;
+  isolation: isolate;
+  background: #35241b;
+}
+
+.story-page.story-image-backdrop::before {
+  content: "";
+  position: fixed;
+  inset: -54px;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(39, 25, 18, .48), rgba(39, 25, 18, .62)),
+    var(--story-backdrop) center / cover no-repeat;
+  filter: blur(28px) saturate(.72);
+  transform: scale(1.1);
+}
+
+.story-page.story-image-backdrop::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(20, 12, 9, .5), transparent 23%, transparent 77%, rgba(20, 12, 9, .5));
+}
+
+.story-page.story-image-backdrop .story-shell {
+  position: relative;
+  z-index: 2;
+}
+
+.story-page.story-image-backdrop .paper {
+  box-shadow: 0 28px 70px rgba(20, 11, 7, .42);
+}
+
+@media (max-width: 680px) {
+  .cover-page::before,
+  .story-page.story-image-backdrop::before {
+    inset: -28px;
+    filter: blur(18px) saturate(.76);
+  }
+
+  .cover-page .book {
+    width: min(100%, 94vw);
+  }
+}
