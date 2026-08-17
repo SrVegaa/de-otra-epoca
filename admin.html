@@ -6,9 +6,28 @@
   <meta name="robots" content="noindex,nofollow">
   <title>Panel editorial — De Otra Época</title>
   <link rel="stylesheet" href="libro.css?v=18">
+<style>
+[hidden]{display:none!important}
+.admin-login-only{min-height:100vh;display:grid;place-items:center;padding:24px;background:#0b1220}
+.admin-login-only .admin-login-card{width:min(520px,100%);background:#fff;color:#172033;border:1px solid #cbd5e1;box-shadow:0 24px 70px rgba(0,0,0,.35)}
+</style>
 </head>
 <body class="admin-page">
-  <div class="admin-app">
+  <section id="admin-login" class="admin-login-screen admin-login-only">
+  <div class="admin-login-card">
+    <div class="admin-login-icon">DE</div>
+    <p class="admin-kicker">Acceso privado</p>
+    <h1>Administrador</h1>
+    <p>Ingresá con tu usuario y contraseña para abrir el panel de control.</p>
+    <form id="password-login" class="admin-login password-login">
+      <label>Usuario<input id="login-user" type="email" autocomplete="username" required placeholder="Usuario"></label>
+      <label>Contraseña<input id="login-password" type="password" minlength="8" autocomplete="current-password" required placeholder="Contraseña"></label>
+      <button class="submit-button">Entrar</button>
+    </form>
+    <p id="login-status" class="form-status" aria-live="polite"></p>
+  </div>
+</section>
+<div id="admin-shell" class="admin-app" hidden>
     <aside class="admin-sidebar">
       <div class="admin-brand">
         <span class="admin-brand-mark">DE</span>
@@ -38,26 +57,6 @@
         </div>
       </header>
 
-      <section id="admin-login" class="admin-login-screen">
-        <div class="admin-login-card">
-          <div class="admin-login-icon">DE</div>
-          <p class="admin-kicker">Acceso exclusivo</p>
-          <h1>Bienvenido, Abelardo</h1>
-          <p>Ingresá a tu espacio privado para revisar las historias y los comentarios enviados por los lectores.</p>
-          <form id="password-login" class="admin-login password-login">
-            <label>Correo<input type="email" value="abelardoadrian@gmail.com" autocomplete="username" readonly></label>
-            <label>Contraseña<input id="login-password" type="password" minlength="8" autocomplete="current-password" required placeholder="Tu contraseña"></label>
-            <button class="submit-button">Ingresar al panel</button>
-          </form>
-          <p id="login-status" class="form-status"></p>
-          <details class="first-access">
-            <summary>Primera vez o todavía no tengo contraseña</summary>
-            <p>Solicitá un último enlace por correo. Cuando entres, la página te permitirá crear tu contraseña.</p>
-            <button id="email-access" class="reader-button" type="button">Enviarme el enlace de configuración</button>
-            <p id="email-status" class="form-status"></p>
-          </details>
-        </div>
-      </section>
 
       <div id="admin-area" hidden>
         <section class="admin-heading">
@@ -120,6 +119,6 @@
       </div>
     </main>
   </div>
-  <script type="module" src="admin.js?v=5"></script>
+  <script type="module" src="admin.js?v=6"></script>
 </body>
 </html>
