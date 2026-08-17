@@ -12,8 +12,15 @@ function setStatus(el, message, type) {
 
 async function uploadPhotos(files) {
   const paths = [];
-  const submissionId = crypto.randomUUID();
-  for (const [index, file] of [...files].slice(0, 3).entries()) {
+  const selectedFiles = [...files].slice(0, 3);
+  if (!selectedFiles.length) return paths;
+
+  const submissionId =
+    globalThis.crypto && typeof globalThis.crypto.randomUUID === 'function'
+      ? globalThis.crypto.randomUUID()
+      : `story-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
+  for (const [index, file] of selectedFiles.entries()) {
     if (file.size > 5 * 1024 * 1024) throw new Error('Cada foto debe pesar menos de 5 MB.');
     if (!['image/jpeg','image/png','image/webp'].includes(file.type)) throw new Error('Las fotos deben ser JPG, PNG o WebP.');
     const ext = file.name.split('.').pop().toLowerCase().replace(/[^a-z0-9]/g, '') || 'jpg';
