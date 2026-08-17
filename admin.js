@@ -1,5 +1,5 @@
 import{createClient}from'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.111.0/+esm';
-const ADMIN_ID='f5de4699-d26e-4b10-9c75-fea1dcb44c52',URL='https://bgfauwszjpmztgpcoobq.supabase.co',KEY='sb_publishable_E4GqF4Hj5GGYfmG7-Wor6Q_0QgjYND0',EMAIL='abelardoadrian@gmail.com',sb=createClient(URL,KEY);
+const ADMIN_ID='f5de4699-d26e-4b10-9c75-fea1dcb44c52',URL='https://bgfauwszjpmztgpcoobq.supabase.co',KEY='sb_publishable_E4GqF4Hj5GGYfmG7-Wor6Q_0QgjYND0',EMAIL='abelardoadrian@gmail.com',sb=createClient(URL,KEY,{global:{fetch:(input,init={})=>fetch(input,{...init,cache:'no-store'})}});
 const login=document.querySelector('#admin-login'),shell=document.querySelector('#admin-shell'),area=document.querySelector('#admin-area'),storyList=document.querySelector('#admin-list'),commentList=document.querySelector('#comment-list'),status=document.querySelector('#admin-status');
 function message(t){status.textContent=t;status.classList.toggle('show',Boolean(t))}
 function label(value){return value==='pending'?'Pendiente':value==='approved'?'Publicado':'Rechazado'}
@@ -7,7 +7,7 @@ function date(value){if(!value)return'';return new Intl.DateTimeFormat('es-AR',{
 async function load(){
  message('Actualizando el panel…');
  const[storiesResult,commentsResult,visitsResult]=await Promise.all([sb.from('stories').select('*').order('created_at',{ascending:false}),sb.from('comments').select('*').order('created_at',{ascending:false}),sb.rpc('get_admin_visit_stats')]);
- if(storiesResult.error||commentsResult.error){message('No se pudieron cargar todos los aportes.');return}
+ if(storiesResult.error||commentsResult.error){const error=storiesResult.error||commentsResult.error;message(`No se pudieron cargar los aportes: ${error.message}`);return}
  renderStories(storiesResult.data);renderComments(commentsResult.data);
  const storyPending=storiesResult.data.filter(x=>x.status==='pending').length,commentPending=commentsResult.data.filter(x=>x.status==='pending').length;
  document.querySelector('#story-pending-stat').textContent=storyPending;
