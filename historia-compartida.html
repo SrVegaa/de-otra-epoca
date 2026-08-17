@@ -1,1 +1,42 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Historia compartida — De Otra Época</title><link rel="stylesheet" href="libro.css?v=12"></head><body class="story-page archive-page"><main class="story-shell"><nav class="book-nav"><a href="historias.html">← Volver a las historias</a><span>De Otra Época</span></nav><article class="paper shared-story" id="shared-story"><p class="chapter">Un recuerdo compartido</p><h1 id="shared-title">Cargando historia…</h1><p class="story-author" id="shared-author"></p><div class="shared-photos" id="shared-photos"></div><div class="story-text" id="shared-body"></div></article></main><script src="historia-compartida.js?v=2"></script></body></html>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Historia compartida — De Otra Época</title>
+  <link rel="stylesheet" href="libro.css?v=12">
+</head>
+<body class="story-page archive-page">
+  <main class="story-shell">
+    <nav class="book-nav">
+      <a href="historias.html">← Volver a las historias</a>
+      <span>De Otra Época</span>
+    </nav>
+
+    <article class="paper shared-story" id="shared-story">
+      <p class="chapter">Un recuerdo compartido</p>
+      <h1 id="shared-title">Cargando historia…</h1>
+      <p class="story-author" id="shared-author"></p>
+      <div class="shared-photos" id="shared-photos"></div>
+      <div class="story-text" id="shared-body"></div>
+
+      <section class="comments-box" id="shared-comments" hidden>
+        <p class="chapter">La sobremesa del recuerdo</p>
+        <h2>¿Vos también la recordás?</h2>
+        <p class="comments-intro">Comentarios compartidos por quienes también recuerdan aquellos tiempos.</p>
+        <div class="comments-list">
+          <p class="comment-empty">Cargando comentarios…</p>
+        </div>
+        <form class="comment-form">
+          <input name="name" maxlength="80" placeholder="Tu nombre (opcional)">
+          <input name="email" type="email" maxlength="180" required placeholder="Tu correo (no se publica)">
+          <textarea name="body" maxlength="1500" required placeholder="Contanos qué te hizo recordar esta historia…"></textarea>
+          <button class="submit-button" type="submit">Enviar comentario</button>
+          <div class="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </section>
+    </article>
+  </main>
+  <script src="historia-compartida.js?v=3"></script>
+</body>
+</html>
