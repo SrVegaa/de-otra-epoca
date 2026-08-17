@@ -1,7 +1,8 @@
 const SUPABASE_URL = 'https://bgfauwszjpmztgpcoobq.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_E4GqF4Hj5GGYfmG7-Wor6Q_0QgjYND0';
 const API = `${SUPABASE_URL}/rest/v1`;
-const headers = { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' };
+const authHeaders = { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` };
+const headers = { ...authHeaders, 'Content-Type': 'application/json' };
 
 function setStatus(el, message, type) {
   if (!el) return;
@@ -19,7 +20,7 @@ async function uploadPhotos(files) {
     const path = `${submissionId}/${Date.now()}-${index}.${ext}`;
     const response = await fetch(`${SUPABASE_URL}/storage/v1/object/story-submissions/${path}`, {
       method: 'POST',
-      headers: { apikey: SUPABASE_KEY, 'Content-Type': file.type, 'x-upsert': 'false' },
+      headers: { ...authHeaders, 'Content-Type': file.type, 'x-upsert': 'false' },
       body: file
     });
     if (!response.ok) throw new Error('No se pudo subir una de las fotos.');
