@@ -1,6 +1,6 @@
 import{createClient}from'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.111.0/+esm';
-const URL='https://bgfauwszjpmztgpcoobq.supabase.co',KEY='sb_publishable_E4GqF4Hj5GGYfmG7-Wor6Q_0QgjYND0',EMAIL='abelardoadrian@gmail.com',sb=createClient(URL,KEY);
-const login=document.querySelector('#admin-login'),area=document.querySelector('#admin-area'),storyList=document.querySelector('#admin-list'),commentList=document.querySelector('#comment-list'),status=document.querySelector('#admin-status');
+const ADMIN_ID='f5de4699-d26e-4b10-9c75-fea1dcb44c52',URL='https://bgfauwszjpmztgpcoobq.supabase.co',KEY='sb_publishable_E4GqF4Hj5GGYfmG7-Wor6Q_0QgjYND0',EMAIL='abelardoadrian@gmail.com',sb=createClient(URL,KEY);
+const login=document.querySelector('#admin-login'),shell=document.querySelector('#admin-shell'),area=document.querySelector('#admin-area'),storyList=document.querySelector('#admin-list'),commentList=document.querySelector('#comment-list'),status=document.querySelector('#admin-status');
 function message(t){status.textContent=t;status.classList.toggle('show',Boolean(t))}
 function label(value){return value==='pending'?'Pendiente':value==='approved'?'Publicado':'Rechazado'}
 function date(value){if(!value)return'';return new Intl.DateTimeFormat('es-AR',{day:'2-digit',month:'short',year:'numeric'}).format(new Date(value))}
@@ -59,9 +59,31 @@ async function reviewStory(s,edited,next,button){button.disabled=true;message('G
 async function reviewComment(c,edited,next,button){button.disabled=true;message('Guardando comentario…');try{
  const{error}=await sb.from('comments').update({body:edited,status:next,reviewed_at:new Date().toISOString(),published_at:next==='approved'?new Date().toISOString():null}).eq('id',c.id);if(error)throw error;message(next==='approved'?'Comentario publicado.':'Comentario rechazado.');await load();
 }catch(e){message('No se pudo guardar: '+e.message)}finally{button.disabled=false}}
-document.querySelector('#password-login').onsubmit=async e=>{e.preventDefault();const st=document.querySelector('#login-status'),password=document.querySelector('#login-password').value;st.className='form-status show ok';st.textContent='Ingresando…';const{error}=await sb.auth.signInWithPassword({email:EMAIL,password});st.className='form-status show '+(error?'error':'ok');st.textContent=error?'La contraseña no es correcta o todavía no fue creada.':'Acceso correcto.'};
-document.querySelector('#email-access').onclick=async()=>{const st=document.querySelector('#email-status'),button=document.querySelector('#email-access');button.disabled=true;st.className='form-status show ok';st.textContent='Solicitando el enlace…';const{error}=await sb.auth.signInWithOtp({email:EMAIL,options:{shouldCreateUser:false,emailRedirectTo:'https://srvegaa.github.io/de-otra-epoca/admin.html'}});st.className='form-status show '+(error?'error':'ok');st.textContent=error?(String(error.message).includes('rate limit')?'Supabase alcanzó el límite de correos. Esperá una hora antes de volver a intentar.':'No se pudo enviar el enlace.'):'Revisá tu correo. Usá solamente el mensaje más nuevo.';setTimeout(()=>button.disabled=false,60000)};
+document.querySelector('#password-login').onsubmit=async e=>{
+  e.preventDefault();
+  const status=document.querySelector('#login-status');
+  const email=document.querySelector('#login-user').value.trim().toLowerCase();
+  const password=document.querySelector('#login-password').value;
+  status.className='form-status'; status.textContent='Ingresando…';
+  const {data,error}=await sb.auth.signInWithPassword({email,password});
+  const allowed=!error&&data.user?.id===ADMIN_ID;
+  if(!allowed&&data.user) await sb.auth.signOut();
+  status.className='form-status '+(allowed?'is-success':'is-error');
+  status.textContent=allowed?'Acceso correcto.':'Usuario o contraseña incorrectos.';
+};
 document.querySelector('#password-form').onsubmit=async e=>{e.preventDefault();const st=document.querySelector('#password-status'),a=document.querySelector('#new-password').value,b=document.querySelector('#repeat-password').value;if(a!==b){st.className='form-status show error';st.textContent='Las dos contraseñas no coinciden.';return}st.className='form-status show ok';st.textContent='Guardando…';const{error}=await sb.auth.updateUser({password:a});st.className='form-status show '+(error?'error':'ok');st.textContent=error?('No se pudo guardar: '+error.message):'Contraseña guardada. Desde ahora entrarás sin correos.';if(!error)e.target.reset()};
 document.querySelector('#refresh-all').onclick=load;document.querySelector('#logout').onclick=()=>sb.auth.signOut();
-async function session(){const{data}=await sb.auth.getSession();const ok=data.session?.user?.email===EMAIL;login.hidden=ok;area.hidden=!ok;if(ok)load()}
-sb.auth.onAuthStateChange(()=>session());session();
+let sessionRun=0;
+async function session(){
+  const run=++sessionRun;
+  const {data,error}=await sb.auth.getUser();
+  if(run!==sessionRun) return;
+  const ok=!error&&data.user?.id===ADMIN_ID;
+  login.hidden=ok;
+  shell.hidden=!ok;
+  area.hidden=!ok;
+  if(ok) load();
+  else if(data.user) await sb.auth.signOut();
+}
+sb.auth.onAuthStateChange(()=>setTimeout(session,0));
+session();
