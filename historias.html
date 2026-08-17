@@ -1,5 +1,16 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Historias y recuerdos de De Otra Época. Leé, recordá y compartí tu propia historia."><title>Historias — De Otra Época</title><link rel="stylesheet" href="libro.css?v=13"></head>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Historias y recuerdos de De Otra Época. Leé, recordá y compartí tu propia historia."><title>Historias — De Otra Época</title><link rel="stylesheet" href="libro.css?v=13">
+<style>
+.share-box{margin:2.2rem 0 1.4rem;padding:1.45rem 1.55rem;border-top:3px solid #d9a52e;border-bottom:1px solid #cdb98e;background:rgba(255,248,229,.62)}
+.share-box .share-kicker{margin:0 0 .35rem;color:#cc624d;font:700 .78rem/1.3 Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.share-box h2{margin:.1rem 0 .45rem;color:#27666a;font-size:clamp(1.55rem,4vw,2.25rem)}
+.share-box p{max-width:780px;margin:0 0 1rem;color:#71573d;font-size:1.05rem;line-height:1.55}
+.share-actions{display:flex;flex-wrap:wrap;gap:.65rem}
+.share-action{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:.7rem 1rem;border:1px solid #27666a;background:#27666a;color:#fff;text-decoration:none;font:700 .82rem/1 Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.share-action.secondary{background:transparent;color:#27666a}
+.share-action:hover,.share-action:focus-visible{filter:brightness(.92);outline:2px solid #d9a52e;outline-offset:2px}
+@media(max-width:560px){.share-box{padding:1.15rem 1rem}.share-actions{display:grid}.share-action{width:100%}}
+</style></head>
 <body class="story-page archive-page"><main class="story-shell"><nav class="book-nav"><a href="index.html">← Volver a la tapa</a><span>De Otra Época</span></nav>
 <section class="paper archive-paper"><p class="chapter">Recuerdos que siguen vivos</p><h1>Historias</h1>
 <p class="contents-intro">Estas historias guardan la voz de una generación que poco a poco se va despidiendo y de una época que no volverá. Son recuerdos sencillos, llenos de nostalgia y alegría, que todavía viven en quienes tuvimos la suerte de compartirlos.</p>
@@ -11,4 +22,8 @@
 <a class="contents-card" href="silbido-de-mi-viejo.html"><span class="contents-number">HISTORIA 04</span><span class="contents-main"><strong>El silbido de mi viejo</strong><small>Autor: A. Vega</small></span><em>La señal que daba por terminada la tarde.</em></a>
 <a class="contents-card" href="21-de-septiembre.html"><span class="contents-number">HISTORIA 05</span><span class="contents-main"><strong>El 21 de septiembre</strong><small>Autor: A. Vega</small></span><em>Primavera, amigos y un reloj que nos reunía.</em></a>
 </div><p id="stories-message" class="form-help"></p>
-<footer class="archive-footer"><span>Los aportes se revisan antes de publicarse.</span><span class="public-visit-count" data-visit-count hidden></span><a href="admin.html">Acceso privado</a></footer></section></main><script src="historias.js?v=2"></script><script src="visitas.js?v=1"></script></body></html>
+<section class="share-box" aria-labelledby="share-title"><p class="share-kicker">Que los recuerdos sigan viajando</p><h2 id="share-title">Compartí De Otra Época</h2><p>Si alguna historia te hizo volver por un momento, compartila con alguien que también pueda recordarla.</p><div class="share-actions"><a class="share-action" id="share-whatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a><a class="share-action" id="share-facebook" href="#" target="_blank" rel="noopener">Facebook</a><button class="share-action secondary" id="share-copy" type="button">Copiar enlace</button></div></section>
+<footer class="archive-footer"><span>Los aportes se revisan antes de publicarse.</span><span class="public-visit-count" data-visit-count hidden></span><a href="admin.html">Acceso privado</a></footer></section></main><script src="historias.js?v=2"></script><script src="visitas.js?v=1"></script>
+<script>
+(function(){var url='https://www.deotraepoca.com/';var text='Mirá De Otra Época, historias y recuerdos de una generación que no volverá.';document.getElementById('share-whatsapp').href='https://wa.me/?text='+encodeURIComponent(text+' '+url);document.getElementById('share-facebook').href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url);var button=document.getElementById('share-copy');button.addEventListener('click',function(){function done(){button.textContent='Enlace copiado';setTimeout(function(){button.textContent='Copiar enlace'},2200)}if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(url).then(done)}else{var area=document.createElement('textarea');area.value=url;area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();document.execCommand('copy');area.remove();done()}})})();
+</script></body></html>
