@@ -12,13 +12,16 @@ function applyFilter(){
 search?.addEventListener('input',applyFilter);
 (async()=>{
   try{
-    const r=await fetch(SUPABASE_URL+'/rest/v1/stories?status=eq.approved&select=id,title,excerpt,author_mode,author_name,published_at&order=published_at.desc',{headers});
+    const r=await fetch(SUPABASE_URL+'/rest/v1/stories?status=eq.approved&select=id,title,excerpt,author_mode,author_name,published_at,source_kind,story_number&order=published_at.desc',{headers});
     if(!r.ok) throw new Error();
     const stories=await r.json();
-    stories.forEach((story,i)=>{
+    const official=stories.filter(story=>story.source_kind==='official').sort((a,b)=>(a.story_number||999)-(b.story_number||999));
+    const readers=stories.filter(story=>story.source_kind!=='official');
+    [...official,...readers].forEach((story)=>{
+      const readerIndex=readers.indexOf(story);
       const a=document.createElement('a'); a.className='contents-card community-story';
       a.href='historia-compartida.html?id='+encodeURIComponent(story.id);
-      const number=document.createElement('span'); number.className='contents-number'; number.textContent='LECTOR '+String(i+1).padStart(2,'0');
+      const number=document.createElement('span'); number.className='contents-number'; number.textContent=story.source_kind==='official'?'HISTORIA '+String(story.story_number||'').padStart(2,'0'):'LECTOR '+String(readerIndex+1).padStart(2,'0');
       const text=document.createElement('span'); text.className='contents-main';
       const title=document.createElement('strong'); title.textContent=story.title;
       const author=document.createElement('small'); author.textContent='Autor: '+(story.author_mode==='anonymous'||!story.author_name?'Anónimo':story.author_name);
