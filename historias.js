@@ -16,7 +16,7 @@ search?.addEventListener('input',applyFilter);
     if(!r.ok) throw new Error();
     const stories=await r.json();
     const official=stories.filter(story=>story.source_kind==='official').sort((a,b)=>(a.story_number||999)-(b.story_number||999));
-    const readers=stories.filter(story=>story.source_kind!=='official');
+    const readers=stories.filter(story=>story.source_kind!=='official').sort((a,b)=>new Date(a.published_at)-new Date(b.published_at));
     [...official,...readers].forEach((story)=>{
       const readerIndex=readers.indexOf(story);
       const a=document.createElement('a'); a.className='contents-card community-story';
