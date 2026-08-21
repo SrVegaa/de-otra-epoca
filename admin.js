@@ -73,10 +73,27 @@ function renderComments(items){
  const actions=buttons((next,b)=>reviewComment(c,body.value,next,b),c.status);card.append(top,meta(c.author_name,c.author_email,c.status,c.created_at),body,actions);commentList.appendChild(card)});
 }
 function buttons(handler,current){const actions=document.createElement('div');actions.className='admin-actions';[['approved','✓ Aprobar y publicar'],['rejected','× Rechazar']].forEach(([next,text])=>{const b=document.createElement('button');b.textContent=text;b.className=next==='approved'?'approve':'reject';if(current===next)b.classList.add('selected');b.onclick=()=>handler(next,b);actions.appendChild(b)});return actions}
-async function reviewStory(s,edited,next,button){button.disabled=true;message('Guardando historia…');try{
- const paths=s.photo_paths||[];if(next==='approved'&&paths.length){for(const path of paths){const{error}=await sb.storage.from('story-submissions').copy(path,path,{destinationBucket:'story-published'});if(error&&!String(error.message).includes('already'))throw error}}
- const{error}=await sb.from('stories').update({body:edited,status:next,reviewed_at:new Date().toISOString(),published_at:next==='approved'?new Date().toISOString():null}).eq('id',s.id);if(error)throw error;message(next==='approved'?'Historia publicada.':'Historia rechazada.');await load();
-}catch(e){message('No se pudo guardar: '+e.message)}finally{button.disabled=false}}
+async function reviewStory(s,edited,next,button){
+ button.disabled=true;message('Guardando historia…');
+ try{
+  const paths=s.photo_paths||[];
+  if(next==='approved'&&paths.length){
+   for(const path of paths){
+    const{error}=await sb.storage.from('story-submissions').copy(path,path,{destinationBucket:'story-published'});
+    if(error&&!String(error.message).toLowerCase().includes('already'))throw error
+   }
+  }
+  const{error}=await sb.from('stories').update({body:edited,status:next,reviewed_at:new Date().toISOString(),published_at:next==='approved'?new Date().toISOString():null}).eq('id',s.id);
+  if(error)throw error;
+  let cleanupError=null;
+  if(next==='approved'&&paths.length){
+   const removed=await sb.storage.from('story-submissions').remove(paths);
+   cleanupError=removed.error
+  }
+  await load();
+  message(cleanupError?'Historia publicada, pero no se pudieron eliminar todas las copias pendientes: '+cleanupError.message:next==='approved'?'Historia publicada y copias pendientes eliminadas.':'Historia rechazada.');
+ }catch(e){message('No se pudo guardar: '+e.message)}finally{button.disabled=false}
+}
 async function reviewComment(c,edited,next,button){button.disabled=true;message('Guardando comentario…');try{
  const{error}=await sb.from('comments').update({body:edited,status:next,reviewed_at:new Date().toISOString(),published_at:next==='approved'?new Date().toISOString():null}).eq('id',c.id);if(error)throw error;message(next==='approved'?'Comentario publicado.':'Comentario rechazado.');await load();
 }catch(e){message('No se pudo guardar: '+e.message)}finally{button.disabled=false}}
