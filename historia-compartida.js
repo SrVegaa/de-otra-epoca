@@ -8,12 +8,13 @@ const author = document.querySelector('#shared-author');
 const body = document.querySelector('#shared-body');
 const photos = document.querySelector('#shared-photos');
 const comments = document.querySelector('#shared-comments');
+const chapter = document.querySelector('#shared-chapter');
 
 (async () => {
   try {
     if (!id) throw new Error();
 
-    const fields = 'title,body,author_mode,author_name,photo_paths,slug';
+    const fields = 'title,body,author_mode,author_name,photo_paths,slug,source_kind,story_number';
     const response = await fetch(
       `${URL}/rest/v1/stories?id=eq.${encodeURIComponent(id)}&status=eq.approved&select=${fields}`,
       { headers }
@@ -25,6 +26,7 @@ const comments = document.querySelector('#shared-comments');
 
     document.title = `${story.title} — De Otra Época`;
     title.textContent = story.title;
+    if (story.source_kind === 'official' && story.story_number) chapter.textContent = `Historia ${String(story.story_number).padStart(2, '0')}`;
     author.textContent = `Autor: ${
       story.author_mode === 'anonymous' || !story.author_name
         ? 'Anónimo'
