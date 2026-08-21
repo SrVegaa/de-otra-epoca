@@ -89,6 +89,13 @@ async function buildNavigation() {
       photos.appendChild(image);
     });
 
+    const backdropImage = photos.querySelector('img');
+    if (backdropImage) {
+      const safeSource = backdropImage.src.replace(/"/g, '\\"');
+      document.body.style.setProperty('--story-backdrop', 'url("' + safeSource + '")');
+      document.body.classList.add('story-image-backdrop');
+    }
+
     await buildNavigation();
 
     comments.dataset.comments = story.slug || `lector-${id}`;
