@@ -10,6 +10,7 @@
 [hidden]{display:none!important}
 .admin-login-only{min-height:100vh;display:grid;place-items:center;padding:24px;background:#0b1220}
 .admin-login-only .admin-login-card{width:min(520px,100%);background:#fff;color:#172033;border:1px solid #cbd5e1;box-shadow:0 24px 70px rgba(0,0,0,.35)}
+.admin-own-form{display:grid;gap:14px;margin-top:18px}.admin-own-form label{display:grid;gap:6px;font-weight:700}.admin-own-form input,.admin-own-form textarea{width:100%;box-sizing:border-box;padding:12px;border:1px solid #cbd5e1;border-radius:8px;font:inherit}.admin-own-form textarea{min-height:220px;resize:vertical}.admin-photo-strip{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}.admin-photo-strip figure{margin:0;width:120px}.admin-photo-strip img{display:block;width:120px;height:90px;object-fit:cover;border-radius:8px;border:1px solid #cbd5e1}.admin-photo-strip figcaption{font-size:11px;color:#64748b;margin-top:4px}.admin-own-list{margin-top:18px}.admin-form-note{font-size:13px;color:#64748b}
 </style>
 </head>
 <body class="admin-page">
@@ -35,7 +36,8 @@
       </div>
       <nav class="admin-menu" aria-label="Secciones del panel">
         <a class="active" href="#admin-dashboard"><span>◫</span> Resumen</a>
-        <a href="#story-section"><span>▤</span> Historias</a>
+        <a href="#own-story-section"><span>✎</span> Mis historias</a>
+        <a href="#story-section"><span>▤</span> Historias de lectores</a>
         <a href="#comment-section"><span>◌</span> Comentarios</a>
         <a href="#visit-section"><span>⌁</span> Estadísticas</a>
       </nav>
@@ -86,6 +88,24 @@
           </form>
           <p id="password-status" class="form-status"></p>
         </details>
+
+
+        <section class="admin-section" id="own-story-section">
+          <div class="admin-section-heading">
+            <div><span class="admin-section-icon">✎</span><div><h2>Mis historias</h2><p>Cargá tus relatos como historias oficiales numeradas</p></div></div>
+          </div>
+          <form id="official-story-form" class="admin-own-form">
+            <label>Título<input name="title" maxlength="120" required placeholder="Título de la historia"></label>
+            <label>Resumen breve<input name="excerpt" maxlength="220" placeholder="Una frase para el índice"></label>
+            <label>Historia<textarea name="body" minlength="80" maxlength="12000" required placeholder="Escribí o pegá aquí la historia completa"></textarea></label>
+            <label>Fotos, hasta 3<input id="official-photos" name="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple></label>
+            <div id="official-photo-preview" class="photo-preview"></div>
+            <p class="admin-form-note">Al publicar, se asignará automáticamente el próximo número de Historia.</p>
+            <button class="submit-button" type="submit">Publicar mi historia</button>
+            <div id="official-story-status" class="form-status" role="status" aria-live="polite"></div>
+          </form>
+          <div id="official-list" class="admin-list admin-own-list"></div>
+        </section>
 
         <p id="admin-status" class="admin-system-status"></p>
 
