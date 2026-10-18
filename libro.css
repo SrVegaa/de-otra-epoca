@@ -323,3 +323,6 @@ a { color:inherit; }
     width: min(100%, 94vw);
   }
 }
+
+.shared-story-float-photo{display:block;width:min(470px,50%);height:auto;max-height:none;float:left;margin:0 30px 20px 0;border:7px solid #fff;box-shadow:0 8px 22px rgba(0,0,0,.18);object-fit:contain}
+@media(max-width:680px){.shared-story-float-photo{width:min(100%,470px);float:none;margin:0 auto 22px}}
