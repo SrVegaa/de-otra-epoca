@@ -63,6 +63,9 @@ async function buildNavigation() {
     const [story] = await response.json();
     if (!story) throw new Error();
 
+    const normalizedTitle = story.title.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').toLocaleLowerCase('es').replace(/[^\\p{L}\\p{N}]+/gu, ' ').trim();
+    const showPhotosFull = ['una lista de otra epoca', 'la canaleta de la san lorenzo'].includes(normalizedTitle);
+
     document.title = `${story.title} — De Otra Época`;
     title.textContent = story.title;
     if (story.source_kind === 'official' && story.story_number) chapter.textContent = `Historia ${String(story.story_number).padStart(2, '0')}`;
@@ -86,6 +89,11 @@ async function buildNavigation() {
       image.src = `${URL}/storage/v1/object/public/story-published/${path}`;
       image.alt = `Fotografía de ${story.title}`;
       image.loading = 'lazy';
+      if (showPhotosFull) {
+        image.style.height = 'auto';
+        image.style.maxHeight = 'none';
+        image.style.objectFit = 'contain';
+      }
       photos.appendChild(image);
     });
 
