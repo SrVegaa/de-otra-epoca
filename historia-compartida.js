@@ -63,8 +63,9 @@ async function buildNavigation() {
     const [story] = await response.json();
     if (!story) throw new Error();
 
-    const normalizedTitle = story.title.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').toLocaleLowerCase('es').replace(/[^\\p{L}\\p{N}]+/gu, ' ').trim();
-    const showPhotosFull = ['una lista de otra epoca', 'la canaleta de la san lorenzo'].includes(normalizedTitle);
+    const normalizedTitle = story.title.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('es').replace(/[^a-z0-9]+/g, ' ').trim();
+    const showPhotosFull = normalizedTitle.includes('una lista de otra epoca') ||
+      (normalizedTitle.includes('canaleta') && normalizedTitle.includes('san lorenzo'));
 
     document.title = `${story.title} — De Otra Época`;
     title.textContent = story.title;
@@ -90,9 +91,9 @@ async function buildNavigation() {
       image.alt = `Fotografía de ${story.title}`;
       image.loading = 'lazy';
       if (showPhotosFull) {
-        image.style.height = 'auto';
-        image.style.maxHeight = 'none';
-        image.style.objectFit = 'contain';
+        image.style.setProperty('height', 'auto', 'important');
+        image.style.setProperty('max-height', 'none', 'important');
+        image.style.setProperty('object-fit', 'contain', 'important');
       }
       photos.appendChild(image);
     });
