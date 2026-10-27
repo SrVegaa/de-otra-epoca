@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="Fotografías y recuerdos de la infancia, la familia, el barrio y los amigos de otra época.">
+  <title>Postales de otra época — De Otra Época</title>
+  <link rel="stylesheet" href="libro.css?v=19">
+  <link rel="stylesheet" href="postales.css?v=1">
+</head>
+<body class="story-page archive-page postales-page">
+  <main class="story-shell postales-shell">
+    <nav class="book-nav" aria-label="Navegación principal">
+      <a href="historias.html">← Volver al libro</a>
+      <span>De Otra Época</span>
+    </nav>
+
+    <section class="paper postales-paper">
+      <header class="postales-heading">
+        <p class="chapter">Una foto también cuenta una historia</p>
+        <h1>Postales de<br>otra época</h1>
+        <p class="postales-intro">Fotos de la infancia, la familia, la escuela, el barrio y esos momentos que todavía podemos contar con solo mirarlos.</p>
+        <button class="postales-share-button" id="open-upload" type="button">Compartí tu recuerdo <span aria-hidden="true">↗</span></button>
+      </header>
+
+      <div class="postales-rule"><span>Recuerdos en imágenes</span><i aria-hidden="true"></i></div>
+      <p id="postales-status" class="postales-status" role="status" aria-live="polite">Cargando postales…</p>
+      <section class="postales-grid" id="postales-grid" aria-label="Galería de postales"></section>
+      <button class="postales-more" id="load-more" type="button" hidden>Ver más recuerdos</button>
+      <footer class="postales-footer"><span>Una foto, un nombre y un recuerdo que vuelve.</span><a href="admin.html">Acceso privado</a></footer>
+    </section>
+  </main>
+
+  <dialog class="postales-dialog" id="photo-dialog" aria-labelledby="dialog-title">
+    <button class="dialog-close" type="button" data-close-dialog aria-label="Cerrar">×</button>
+    <div class="dialog-photo-wrap"><img id="dialog-photo" alt=""></div>
+    <div class="dialog-copy">
+      <p class="dialog-year" id="dialog-year"></p>
+      <h2 id="dialog-title"></h2>
+      <p id="dialog-description"></p>
+      <span class="dialog-caption" id="dialog-author"></span>
+      <button class="cassette-reaction dialog-reaction" type="button"></button>
+    </div>
+  </dialog>
+
+  <dialog class="postales-dialog upload-dialog" id="upload-dialog" aria-labelledby="upload-title">
+    <button class="dialog-close" type="button" data-close-dialog aria-label="Cerrar">×</button>
+    <div class="upload-dialog-inner">
+      <p class="chapter">Tu foto también es parte de esta historia</p>
+      <h2 id="upload-title">Compartí tu recuerdo</h2>
+      <p class="upload-lede">La vamos a revisar antes de sumarla a la galería. No necesitás registrarte.</p>
+      <form id="postcard-form" class="postcard-form">
+        <label class="upload-picker" for="postcard-image">
+          <span class="upload-picker-icon" aria-hidden="true">▧</span>
+          <strong id="file-label">Elegí una fotografía</strong>
+          <small>JPG, PNG o WebP · hasta 20 MB antes de optimizar</small>
+          <input id="postcard-image" name="image" type="file" accept="image/*" required>
+        </label>
+        <div class="upload-preview" id="upload-preview" hidden><img id="preview-image" alt="Vista previa de la fotografía"></div>
+        <label>Descripción breve <span class="character-count"><b id="description-count">0</b>/200</span>
+          <textarea name="description" id="postcard-description" maxlength="200" rows="3" required placeholder="¿Qué estaba pasando en ese momento?"></textarea>
+        </label>
+        <div class="form-row">
+          <label>Año aproximado <span class="optional">Opcional</span>
+            <input name="year" type="number" min="1900" max="2100" inputmode="numeric" placeholder="Ej.: 1994">
+          </label>
+          <label>Tu nombre o apodo
+            <input name="name" maxlength="60" required placeholder="¿Cómo te decimos?">
+          </label>
+        </div>
+        <label class="postcard-consent"><input name="consent" type="checkbox" required><span>Confirmo que tengo permiso para compartir esta fotografía.</span></label>
+        <label class="postcard-trap" aria-hidden="true">Dejá vacío este campo<input name="website" tabindex="-1" autocomplete="off"></label>
+        <p class="upload-policy">Al enviarla, aceptás que la foto y el texto se publiquen si los aprobamos.</p>
+        <button class="postales-share-button upload-submit" type="submit">Enviar para revisión</button>
+        <p class="upload-status" id="upload-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </dialog>
+
+  <script type="module" src="postales.js?v=1"></script>
+</body>
+</html>

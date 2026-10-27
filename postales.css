@@ -1,0 +1,76 @@
+.postales-page{background:linear-gradient(90deg,#24747a 0 10px,transparent 10px),radial-gradient(circle at 50% 0,#f8efd9,#e8d5b1 78%)}
+.postales-shell{width:min(1240px,95vw)}
+.postales-paper{padding:clamp(24px,5.5vw,66px);overflow:hidden}
+.postales-heading{max-width:800px;margin:0 auto 48px;text-align:center}
+.postales-heading .chapter{margin-bottom:12px}
+.postales-heading h1{max-width:none;margin:0 auto 18px;padding:0;border:0;color:#315f61;font-size:clamp(43px,8vw,86px);line-height:.91;letter-spacing:-.055em}
+.postales-intro{max-width:650px;margin:0 auto;color:#72533a;font-size:clamp(16px,2vw,20px);line-height:1.55}
+.postales-share-button{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:50px;margin-top:24px;padding:14px 24px;border:0;border-radius:3px;background:#cf654f;color:#fff9eb;font:800 12px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;box-shadow:0 5px 0 #9a4537;transition:transform .18s,box-shadow .18s,background .18s}
+.postales-share-button:hover,.postales-share-button:focus-visible{background:#b9503d;transform:translateY(-2px);box-shadow:0 7px 0 #9a4537;outline:2px solid #e0aa3e;outline-offset:3px}
+.postales-share-button span{font-size:18px}
+.postales-rule{display:flex;align-items:center;gap:18px;margin:0 0 24px;color:#8a6443;font:700 11px Arial,sans-serif;letter-spacing:.15em;text-transform:uppercase}
+.postales-rule i{height:1px;flex:1;background:#cfbd97}
+.postales-status{margin:16px 0;color:#80664a;font-size:15px}
+.postales-status:empty{display:none}
+.postales-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,235px),1fr));align-items:start;gap:22px}
+.postcard{min-width:0;padding:10px 10px 14px;background:#fffdf6;border:1px solid #e1d5bb;box-shadow:0 6px 19px rgba(63,39,24,.15);transform:rotate(var(--tilt,0deg));transition:transform .2s,box-shadow .2s}
+.postcard:hover{z-index:1;transform:rotate(0) translateY(-4px);box-shadow:0 13px 28px rgba(63,39,24,.2)}
+.postcard-photo-button{display:grid;place-items:center;width:100%;min-height:150px;max-height:340px;padding:0;border:0;background:#eee7d8;cursor:zoom-in}
+.postcard-photo-button img{display:block;width:100%;height:auto;max-height:340px;object-fit:contain}
+.postcard-copy{padding:12px 3px 0}
+.postcard-caption{margin:0;color:#302118;font-size:15px;line-height:1.48;white-space:pre-wrap;overflow-wrap:anywhere}
+.postcard-meta{display:flex;justify-content:space-between;gap:8px;margin-top:9px;color:#8a6443;font:11px Arial,sans-serif;letter-spacing:.03em}
+.postcard-meta span:last-child{text-align:right}
+.cassette-reaction{display:inline-flex;align-items:center;gap:7px;min-height:38px;margin-top:9px;padding:4px 9px 4px 5px;border:1px solid transparent;border-radius:3px;background:transparent;color:#5c4633;font:700 12px Arial,sans-serif;cursor:pointer;transition:background .18s,border-color .18s}
+.cassette-reaction:hover,.cassette-reaction:focus-visible{background:#f4e7cc;border-color:#d7bd8d;outline:0}
+.cassette-reaction[aria-pressed="true"]{background:#f4e7cc;border-color:#d7bd8d;color:#873d30}
+.cassette-reaction:disabled{opacity:.55;cursor:wait}
+.cassette-icon{display:block;width:31px;height:23px;flex:none;filter:drop-shadow(0 1px 1px rgba(0,0,0,.2))}
+.cassette-count{min-width:1.1em;color:#8a6443;text-align:left}
+.postales-more{display:block;margin:32px auto 0;padding:12px 20px;border:1px solid #27666a;background:transparent;color:#27666a;font:700 12px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.postales-more:hover{background:#27666a;color:#fff}
+.postales-more[hidden]{display:none}
+.postales-footer{display:flex;justify-content:space-between;gap:16px;margin-top:40px;padding-top:18px;border-top:1px solid #d6c49c;color:#80664a;font-size:13px}
+.postales-footer a{color:#24747a}
+.postales-dialog{position:relative;width:min(900px,calc(100vw - 26px));max-width:none;max-height:min(92dvh,920px);padding:0;border:0;border-radius:8px;background:#fffaf0;color:#302118;box-shadow:0 24px 80px rgba(0,0,0,.45)}
+.postales-dialog::backdrop{background:rgba(19,14,10,.78);backdrop-filter:blur(3px)}
+.dialog-close{position:absolute;z-index:2;top:10px;right:10px;display:grid;place-items:center;width:42px;height:42px;border:1px solid rgba(255,255,255,.75);border-radius:50%;background:rgba(28,20,15,.76);color:#fff;font:32px/1 Arial,sans-serif;cursor:pointer}
+.dialog-photo-wrap{display:grid;place-items:center;min-height:160px;max-height:70dvh;padding:22px 22px 0;background:#1e1812}
+.dialog-photo-wrap img{display:block;width:auto;height:auto;max-width:100%;max-height:66dvh;object-fit:contain}
+.dialog-copy{padding:18px clamp(20px,5vw,40px) 26px}
+.dialog-year{margin:0 0 8px;color:#cf654f;font:700 11px Arial,sans-serif;letter-spacing:.15em;text-transform:uppercase}
+.dialog-copy h2{margin:0 0 8px;color:#315f61;font-size:clamp(24px,4vw,38px);line-height:1.08}
+.dialog-copy>p:not(.dialog-year){margin:0;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}
+.dialog-caption{display:block;margin-top:10px;color:#8a6443;font:12px Arial,sans-serif}
+.dialog-reaction{margin-top:12px}
+.upload-dialog{width:min(740px,calc(100vw - 26px));max-height:94dvh;overflow:auto}
+.upload-dialog .dialog-close{border-color:#cfbd97;background:#f4e7cc;color:#5a3a29}
+.upload-dialog-inner{padding:clamp(24px,5vw,48px)}
+.upload-dialog-inner h2{margin:0 0 8px;color:#315f61;font-size:clamp(32px,5vw,48px);line-height:1}
+.upload-lede{margin:0 0 24px;color:#72533a;line-height:1.5}
+.postcard-form{display:grid;gap:16px}
+.postcard-form>label:not(.postcard-consent):not(.postcard-trap),.postcard-form .form-row label{display:grid;gap:7px;color:#5a3a29;font:700 13px Arial,sans-serif}
+.postcard-form input:not([type=checkbox]):not([type=file]),.postcard-form textarea{width:100%;padding:12px 13px;border:1px solid #bda77d;border-radius:3px;background:#fffdf5;color:#302118;font:16px Georgia,serif}
+.postcard-form textarea{resize:vertical;min-height:88px;line-height:1.5}
+.postcard-form input:focus,.postcard-form textarea:focus{outline:3px solid rgba(36,116,122,.18);border-color:#24747a}
+.character-count{justify-self:end;color:#8a6443;font:11px Arial,sans-serif}
+.optional{color:#8a6443;font:11px Arial,sans-serif;font-weight:400}
+.postcard-form .form-row{grid-template-columns:1fr 1fr}
+.upload-picker{position:relative;display:grid!important;justify-items:center;gap:8px!important;padding:24px 16px;border:1px dashed #9d8660;background:#f7efdE;text-align:center;cursor:pointer}
+.upload-picker-icon{color:#24747a;font-size:30px}
+.upload-picker strong{color:#315f61;font-size:14px}
+.upload-picker small{color:#80664a;font:12px Arial,sans-serif;font-weight:400}
+.upload-picker input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.upload-preview{max-height:230px;padding:8px;background:#eee7d8;text-align:center}
+.upload-preview[hidden]{display:none}
+.upload-preview img{width:auto;height:auto;max-width:100%;max-height:214px;object-fit:contain}
+.postcard-consent{display:flex!important;align-items:flex-start;gap:10px!important;color:#5a3a29;font:14px Georgia,serif!important;line-height:1.45}
+.postcard-consent input{width:17px;height:17px;margin:1px 0 0;accent-color:#24747a}
+.postcard-trap{position:absolute!important;left:-10000px!important;width:1px;height:1px;overflow:hidden}
+.upload-policy{margin:0;color:#80664a;font-size:12px;line-height:1.45}
+.upload-submit{justify-self:start;margin-top:0}
+.upload-status{min-height:1.2em;margin:0;font-size:14px;line-height:1.45}
+.upload-status.error{color:#963d2b}.upload-status.success{padding:10px 12px;background:#e5efdc;color:#315f35}
+@media(max-width:680px){.postales-paper{padding:26px 18px}.postales-heading{margin-bottom:36px}.postales-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.postcard{padding:7px 7px 10px}.postcard-photo-button{min-height:112px;max-height:250px}.postcard-photo-button img{max-height:250px}.postcard-caption{font-size:13px}.postcard-meta{font-size:10px}.cassette-reaction{gap:5px;padding:3px 5px 3px 2px;font-size:11px}.cassette-icon{width:27px;height:20px}.postales-footer{flex-direction:column}.dialog-photo-wrap{max-height:62dvh;padding:48px 12px 0}.dialog-photo-wrap img{max-height:56dvh}.postcard-form .form-row{grid-template-columns:1fr}}
+@media(max-width:360px){.postales-grid{grid-template-columns:1fr}.postcard-photo-button,.postcard-photo-button img{max-height:320px}}
+@media(prefers-reduced-motion:reduce){.postcard,.postales-share-button{transition:none}}
